@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>calories calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+</head>
+
+<body>
+    <div id="kcal">
+
+        <p>
+            <h4> calories calculator </h4>
+            <ul>
+                <li>Fat - {{ Fatkcal }}</li>
+                <li>Carbohydrate - {{ Carbkcal }}</li>
+                <li>Protein - {{ ProKcal }}</li>
+            </ul>
+        </p>
+        <ul id="example-1">
+            <li v-for="oil in oils">
+                fat {{ oil.Fatkcal }} carb {{ oil.Carbkcal }} protain {{ oil.ProKcal }}
+            </li>
+        </ul>
+        <input v-model="calories" type="number" placeholder="your calories here">
+        <button v-on:click="caloriesCalculator">Click here</button>
+    </div>
+
+
+</body>
+<script>
+    var app5 = new Vue({
+        el: '#kcal',
+        data: {
+            Fatkcal: 0,
+            Carbkcal: 0,
+            ProKcal: 0,
+            calories: "",
+            answer: 0,
+            oils: [{
+                Fatkcal: 30,
+                Carbkcal: 20,
+                ProKcal: 20
+            }, {
+                Fatkcal: 40,
+                Carbkcal: 30,
+                ProKcal: 30
+            }],
+        },
+        methods: {
+
+            caloriesCalculator: function() {
+
+                var self = this
+
+                self.Fatkcal = parseInt(self.calories) * ([0.1111111111111111])
+                self.Carbkcal = parseInt(self.calories) * (0.25)
+                self.ProKcal = parseInt(self.calories) * (0.25)
+
+                self.oils.push({
+                    Fatkcal: self.Fatkcal,
+                    Carbkcal: self.Carbkcal,
+                    ProKcal: self.ProKcal
+                })
+
+
+            }
+        }
+
+    })
+</script>
+
+</html>
